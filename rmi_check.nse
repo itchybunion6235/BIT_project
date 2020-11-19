@@ -6,5 +6,12 @@ function action(host,port, args)
   local registry = rmi.Registry:new( host, port )
   local status, j_array = registry:list()
   local data = j_array:getValues()
+  for i, name in pairs(data) do
+    if name == "jmxrmi" then
+      data = "Vulnerable"
+    else
+      data = "Not Vulnerable"
+    end
+  end
   return data
 end
