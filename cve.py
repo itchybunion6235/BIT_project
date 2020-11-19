@@ -5,5 +5,5 @@ import pprint
 parser = argparse.ArgumentParser(description='This is my help')
 args = parser.parse_args()
 nmap = nmap3.Nmap()
-results = nmap.scan_top_ports("10.100.1.0/24")
+results = nmap.scan('192.168.10.10',args=)
 pprint.pprint(results)
