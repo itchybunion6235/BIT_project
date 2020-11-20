@@ -1,7 +1,7 @@
 local rmi = require "rmi"
 local shortport = require "shortport"
 
-portrule = shortport.port_or_service({1098, 1099, 1090, 8901, 8902, 8903}, {"java-rmi", "rmiregistry"})
+portrule = shortport.port_or_service({1099}, {"java-rmi", "rmiregistry"})
 function action(host,port, args)
   local registry = rmi.Registry:new( host, port )
   local status, j_array = registry:list()
@@ -9,6 +9,7 @@ function action(host,port, args)
   for i, name in pairs(data) do
     if name == "jmxrmi" then
       data = "Vulnerable"
+      return data
     else
       data = "Not Vulnerable"
     end
